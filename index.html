@@ -124,6 +124,13 @@
   <div id="result"></div>
 
   <script>
+    // Réinitialise les champs à l'ouverture
+    window.addEventListener('DOMContentLoaded', () => {
+      ['n1', 'n2', 'n3', 'n4'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('result').innerText = '';
+    });
     function solve24() {
       const ops = [
         { sym: '+', fn: (a, b) => a + b },
