@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Jeu du 24</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; background: #f7f7f7; }
+    input { padding: 10px; margin: 5px; width: 60px; font-size: 16px; text-align: center; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    #result { margin-top: 30px; font-size: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🎯 Jeu du 24</h1>
+  <p>Entrez 4 chiffres entre 1 et 10 :</p>
+  <div>
+    <input type="number" id="n1" min="1" max="10">
+    <input type="number" id="n2" min="1" max="10">
+    <input type="number" id="n3" min="1" max="10">
+    <input type="number" id="n4" min="1" max="10">
+  </div>
+  <button onclick="solve24()">Trouver une solution</button>
+  <div id="result"></div>
+
+  <script>
+    function solve24() {
+      const ops = [
+        {sym: '+', fn: (a,b) => a + b},
+        {sym: '-', fn: (a,b) => a - b},
+        {sym: '*', fn: (a,b) => a * b},
+        {sym: '/', fn: (a,b) => b !== 0 ? a / b : NaN},
+      ];
+
+      const nums = [
+        parseInt(document.getElementById("n1").value),
+        parseInt(document.getElementById("n2").value),
+        parseInt(document.getElementById("n3").value),
+        parseInt(document.getElementById("n4").value),
+      ];
+
+      if (nums.some(n => isNaN(n) || n < 1 || n > 10)) {
+        document.getElementById("result").innerText = "❌ Veuillez entrer 4 nombres valides entre 1 et 10.";
+        return;
+      }
+
+      const permutations = arr => arr.length === 1 ? [arr] :
+        arr.flatMap((v, i) => permutations([...arr.slice(0, i), ...arr.slice(i+1)]).map(p => [v, ...p]));
+
+      const tryExpressions = (a,b,c,d) => {
+        for (let op1 of ops) for (let op2 of ops) for (let op3 of ops) {
+          const exprs = [
+            { val: op3.fn(op2.fn(op1.fn(a,b), c), d), str: `(((${a} ${op1.sym} ${b}) ${op2.sym} ${c}) ${op3.sym} ${d})` },
+            { val: op3.fn(op1.fn(a, op2.fn(b,c)), d), str: `((${a} ${op1.sym} (${b} ${op2.sym} ${c})) ${op3.sym} ${d})` },
+            { val: op1.fn(a, op3.fn(op2.fn(b,c), d)), str: `${a} ${op1.sym} (((${b} ${op2.sym} ${c}) ${op3.sym} ${d}))` },
+            { val: op1.fn(a, op2.fn(b, op3.fn(c,d))), str: `${a} ${op1.sym} (${b} ${op2.sym} (${c} ${op3.sym} ${d}))` },
+            { val: op2.fn(op1.fn(a,b), op3.fn(c,d)), str: `(${a} ${op1.sym} ${b}) ${op2.sym} (${c} ${op3.sym} ${d})` }
+          ];
+          for (let e of exprs) {
+            if (Math.abs(e.val - 24) < 1e-6) return e.str;
+          }
+        }
+        return null;
+      };
+
+      for (let perm of permutations(nums)) {
+        const sol = tryExpressions(...perm);
+        if (sol) {
+          document.getElementById("result").innerText = `✅ Solution trouvée :\n${sol}`;
+          return;
+        }
+      }
+
+      document.getElementById("result").innerText = "❌ Aucune solution ne donne 24 avec ces chiffres.";
+    }
+  </script>
+</body>
+</html>
