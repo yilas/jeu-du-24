@@ -2,18 +2,58 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jeu du 24</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; background: #f7f7f7; }
-    input { padding: 10px; margin: 5px; width: 60px; font-size: 16px; text-align: center; }
-    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-    #result { margin-top: 30px; font-size: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 5vw;
+      background: #f7f7f7;
+    }
+    h1 {
+      font-size: 8vw;
+      margin-bottom: 5vw;
+    }
+    p {
+      font-size: 4vw;
+    }
+    .inputs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2vw;
+      margin: 4vw 0;
+    }
+    input[type="number"] {
+      padding: 2vw;
+      width: 15vw;
+      font-size: 5vw;
+      text-align: center;
+    }
+    button {
+      padding: 2vw 5vw;
+      font-size: 5vw;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 1vw;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    #result {
+      margin-top: 5vw;
+      font-size: 5vw;
+      white-space: pre-wrap;
+    }
   </style>
 </head>
 <body>
   <h1>🎯 Jeu du 24</h1>
   <p>Entrez 4 chiffres entre 1 et 10 :</p>
-  <div>
+  <div class="inputs">
     <input type="number" id="n1" min="1" max="10">
     <input type="number" id="n2" min="1" max="10">
     <input type="number" id="n3" min="1" max="10">
