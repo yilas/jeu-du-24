@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +12,16 @@
       padding: 5vw;
       background: #f7f7f7;
     }
+
     h1 {
       font-size: 8vw;
       margin-bottom: 5vw;
     }
+
     p {
       font-size: 4vw;
     }
+
     .inputs {
       display: flex;
       justify-content: center;
@@ -25,12 +29,14 @@
       gap: 2vw;
       margin: 4vw 0;
     }
+
     input[type="number"] {
       padding: 2vw;
       width: 15vw;
       font-size: 5vw;
       text-align: center;
     }
+
     button {
       padding: 2vw 5vw;
       font-size: 5vw;
@@ -40,9 +46,11 @@
       border-radius: 1vw;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #2980b9;
     }
+
     #result {
       margin-top: 5vw;
       font-size: 5vw;
@@ -50,6 +58,7 @@
     }
   </style>
 </head>
+
 <body>
   <h1>🎯 Jeu du 24</h1>
   <p>Entrez 4 chiffres entre 1 et 10 :</p>
@@ -65,10 +74,10 @@
   <script>
     function solve24() {
       const ops = [
-        {sym: '+', fn: (a,b) => a + b},
-        {sym: '-', fn: (a,b) => a - b},
-        {sym: '*', fn: (a,b) => a * b},
-        {sym: '/', fn: (a,b) => b !== 0 ? a / b : NaN},
+        { sym: '+', fn: (a, b) => a + b },
+        { sym: '-', fn: (a, b) => a - b },
+        { sym: '*', fn: (a, b) => a * b },
+        { sym: '/', fn: (a, b) => b !== 0 ? a / b : NaN },
       ];
 
       const nums = [
@@ -84,16 +93,16 @@
       }
 
       const permutations = arr => arr.length === 1 ? [arr] :
-        arr.flatMap((v, i) => permutations([...arr.slice(0, i), ...arr.slice(i+1)]).map(p => [v, ...p]));
+        arr.flatMap((v, i) => permutations([...arr.slice(0, i), ...arr.slice(i + 1)]).map(p => [v, ...p]));
 
-      const tryExpressions = (a,b,c,d) => {
+      const tryExpressions = (a, b, c, d) => {
         for (let op1 of ops) for (let op2 of ops) for (let op3 of ops) {
           const exprs = [
-            { val: op3.fn(op2.fn(op1.fn(a,b), c), d), str: `(((${a} ${op1.sym} ${b}) ${op2.sym} ${c}) ${op3.sym} ${d})` },
-            { val: op3.fn(op1.fn(a, op2.fn(b,c)), d), str: `((${a} ${op1.sym} (${b} ${op2.sym} ${c})) ${op3.sym} ${d})` },
-            { val: op1.fn(a, op3.fn(op2.fn(b,c), d)), str: `${a} ${op1.sym} (((${b} ${op2.sym} ${c}) ${op3.sym} ${d}))` },
-            { val: op1.fn(a, op2.fn(b, op3.fn(c,d))), str: `${a} ${op1.sym} (${b} ${op2.sym} (${c} ${op3.sym} ${d}))` },
-            { val: op2.fn(op1.fn(a,b), op3.fn(c,d)), str: `(${a} ${op1.sym} ${b}) ${op2.sym} (${c} ${op3.sym} ${d})` }
+            { val: op3.fn(op2.fn(op1.fn(a, b), c), d), str: `(((${a} ${op1.sym} ${b}) ${op2.sym} ${c}) ${op3.sym} ${d})` },
+            { val: op3.fn(op1.fn(a, op2.fn(b, c)), d), str: `((${a} ${op1.sym} (${b} ${op2.sym} ${c})) ${op3.sym} ${d})` },
+            { val: op1.fn(a, op3.fn(op2.fn(b, c), d)), str: `${a} ${op1.sym} (((${b} ${op2.sym} ${c}) ${op3.sym} ${d}))` },
+            { val: op1.fn(a, op2.fn(b, op3.fn(c, d))), str: `${a} ${op1.sym} (${b} ${op2.sym} (${c} ${op3.sym} ${d}))` },
+            { val: op2.fn(op1.fn(a, b), op3.fn(c, d)), str: `(${a} ${op1.sym} ${b}) ${op2.sym} (${c} ${op3.sym} ${d})` }
           ];
           for (let e of exprs) {
             if (Math.abs(e.val - 24) < 1e-6) return e.str;
@@ -114,4 +123,5 @@
     }
   </script>
 </body>
+
 </html>
