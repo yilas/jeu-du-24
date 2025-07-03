@@ -124,33 +124,20 @@
   <div id="result"></div>
 
   <script>
-    const fields = ['n1', 'n2', 'n3', 'n4'];
 
+
+    // Réinitialise les champs à l'ouverture
     window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('n1').focus();
-      fields.forEach((id, index) => {
-        const el = document.getElementById(id);
-        el.value = '';
-        el.addEventListener('input', () => {
-          const val = parseInt(el.value);
-          if (val < 1) el.value = 1;
-          if (val > 10) el.value = 10;
-          if (el.value.length > 0 && index < fields.length - 1) {
-            document.getElementById(fields[index + 1]).focus();
-          }
-        });
-        el.addEventListener("keydown", function (e) {
-          if (e.key === "Enter") {
-            const allFilled = fields.every(fid => {
-              const val = document.getElementById(fid).value;
-              return val && !isNaN(parseInt(val));
-            });
-            if (allFilled) solve24();
-          }
-        });
+      ['n1', 'n2', 'n3', 'n4'].forEach(id => {
+        document.getElementById(id).value = '';
       });
       document.getElementById('result').innerText = '';
     });
+
+
+
+
 
     function solve24() {
       const ops = [
@@ -160,7 +147,12 @@
         { sym: '/', fn: (a, b) => b !== 0 ? a / b : NaN },
       ];
 
-      const nums = fields.map(id => parseInt(document.getElementById(id).value));
+      const nums = [
+        parseInt(document.getElementById("n1").value),
+        parseInt(document.getElementById("n2").value),
+        parseInt(document.getElementById("n3").value),
+        parseInt(document.getElementById("n4").value),
+      ];
 
       if (nums.some(n => isNaN(n) || n < 1 || n > 10)) {
         document.getElementById("result").innerText = "❌ Veuillez entrer 4 nombres valides entre 1 et 10.";
@@ -189,7 +181,8 @@
       for (let perm of permutations(nums)) {
         const sol = tryExpressions(...perm);
         if (sol) {
-          document.getElementById("result").innerText = `✅ Solution trouvée :\n${sol}`;
+          document.getElementById("result").innerText = `✅ Solution trouvée :
+${sol}`;
           document.getElementById("result").style.animation = "flash 0.8s ease";
           setTimeout(() => {
             document.getElementById("result").style.animation = "";
@@ -204,7 +197,47 @@
         document.getElementById("result").style.animation = "";
       }, 500);
     }
+    // Validation immédiate de la saisie entre 1 et 10
+    fields.forEach((id) => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', () => {
+        const val = parseInt(el.value);
+        if (val < 1) el.value = 1;
+        if (val > 10) el.value = 10;
+
+
+
+
+      });
+    });
+
+
+    // Passage automatique au champ suivant
+    const fields = ['n1', 'n2', 'n3', 'n4'];
+    fields.forEach((id, index) => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', () => {
+        if (el.value.length > 0 && index < fields.length - 1) {
+          document.getElementById(fields[index + 1]).focus();
+        }
+      });
+    });
+    // Lancer solve24() avec Entrée si tous les champs sont remplis
+    fields.forEach((id, index) => {
+      document.getElementById(id).addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          const allFilled = fields.every(fid => {
+            const val = document.getElementById(fid).value;
+            return val && !isNaN(parseInt(val));
+          });
+          if (allFilled) solve24();
+        }
+      });
+    });
+    document.getElementById("n4").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        solve24();
+      }
+    });
   </script>
 </body>
-
-</html>
