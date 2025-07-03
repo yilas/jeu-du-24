@@ -135,5 +135,17 @@
 
       document.getElementById("result").innerText = "❌ Aucune solution ne donne 24 avec ces chiffres.";
     }
+    // Passage automatique au champ suivant
+    const fields = ['n1', 'n2', 'n3', 'n4'];
+    fields.forEach((id, index) => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', () => {
+        if (el.value.length > 0 && index < fields.length - 1) {
+          document.getElementById(fields[index + 1]).focus();
+        }
+      });
+    });
   </script>
 </body>
+
+</html>
