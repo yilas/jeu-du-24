@@ -3,6 +3,7 @@
 <button onclick="solve24()">Trouver une solution</button>
 <div id="result"></div>
 
+<<<<<<< HEAD
 <script>
   function solve24() {
     const ops = [
@@ -47,6 +48,96 @@
       const sol = tryExpressions(...perm);
       if (sol) {
         document.getElementById("result").innerText = `✅ Solution trouvée :\n${sol}`;
+=======
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeu du 24</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 5vw;
+      background: #f7f7f7;
+    }
+
+    h1 {
+      font-size: 8vw;
+      margin-bottom: 5vw;
+    }
+
+    p {
+      font-size: 4vw;
+    }
+
+    .inputs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2vw;
+      margin: 4vw 0;
+    }
+
+    input[type="number"] {
+      padding: 2vw;
+      width: 15vw;
+      font-size: 5vw;
+      text-align: center;
+    }
+
+    button {
+      padding: 2vw 5vw;
+      font-size: 5vw;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 1vw;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #result {
+      margin-top: 5vw;
+      font-size: 5vw;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🎯 Jeu du 24</h1>
+  <p>Entrez 4 chiffres entre 1 et 10 :</p>
+  <div class="inputs">
+    <input type="number" id="n1" min="1" max="10">
+    <input type="number" id="n2" min="1" max="10">
+    <input type="number" id="n3" min="1" max="10">
+    <input type="number" id="n4" min="1" max="10">
+  </div>
+  <button onclick="solve24()">Trouver une solution</button>
+  <div id="result"></div>
+
+  <script>
+    function solve24() {
+      const ops = [
+        { sym: '+', fn: (a, b) => a + b },
+        { sym: '-', fn: (a, b) => a - b },
+        { sym: '*', fn: (a, b) => a * b },
+        { sym: '/', fn: (a, b) => b !== 0 ? a / b : NaN },
+      ];
+
+      const nums = [
+        parseInt(document.getElementById("n1").value),
+        parseInt(document.getElementById("n2").value),
+        parseInt(document.getElementById("n3").value),
+        parseInt(document.getElementById("n4").value),
+      ];
+
+      if (nums.some(n => isNaN(n) || n < 1 || n > 10)) {
+        document.getElementById("result").innerText = "❌ Veuillez entrer 4 nombres valides entre 1 et 10.";
+>>>>>>> parent of 390820b (Update file...)
         return;
       }
     }
