@@ -124,13 +124,20 @@
   <div id="result"></div>
 
   <script>
+    const fields = ['n1', 'n2', 'n3', 'n4'];
+
     // Réinitialise les champs à l'ouverture
     window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('n1').focus();
-      ['n1', 'n2', 'n3', 'n4'].forEach(id => {
+      fields.forEach(id => {
         document.getElementById(id).value = '';
       });
       document.getElementById('result').innerText = '';
+    });
+    ['n1', 'n2', 'n3', 'n4'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('result').innerText = '';
     });
     function solve24() {
       const ops = [
@@ -191,13 +198,18 @@ ${sol}`;
       }, 500);
     }
     // Validation immédiate de la saisie entre 1 et 10
-    fields.forEach((id) => {
+    fields.forEach((id, index) => {
       const el = document.getElementById(id);
       el.addEventListener('input', () => {
         const val = parseInt(el.value);
         if (val < 1) el.value = 1;
         if (val > 10) el.value = 10;
+        // Passage automatique au champ suivant
+        if (el.value.length > 0 && index < fields.length - 1) {
+          document.getElementById(fields[index + 1]).focus();
+        }
       });
+    });
     });
 
     // Passage automatique au champ suivant
