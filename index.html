@@ -5,12 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jeu du 24</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2739/2739876.png" type="image/png">
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 5vw;
       background: #f7f7f7;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
