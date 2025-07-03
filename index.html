@@ -70,6 +70,22 @@
       font-size: 5vw;
       white-space: pre-wrap;
     }
+
+    @keyframes flash {
+      0% {
+        background-color: #d4edda;
+        transform: scale(1.05);
+      }
+
+      50% {
+        background-color: #c3e6cb;
+        transform: scale(1);
+      }
+
+      100% {
+        background-color: transparent;
+      }
+    }
   </style>
 </head>
 
@@ -128,7 +144,12 @@
       for (let perm of permutations(nums)) {
         const sol = tryExpressions(...perm);
         if (sol) {
-          document.getElementById("result").innerText = `✅ Solution trouvée :\n${sol}`;
+          document.getElementById("result").innerText = `✅ Solution trouvée :
+${sol}`;
+          document.getElementById("result").style.animation = "flash 0.8s ease";
+          setTimeout(() => {
+            document.getElementById("result").style.animation = "";
+          }, 800);
           return;
         }
       }
@@ -145,7 +166,18 @@
         }
       });
     });
-    // Lancer solve24() avec Entrée depuis n4
+    // Lancer solve24() avec Entrée si tous les champs sont remplis
+    fields.forEach((id, index) => {
+      document.getElementById(id).addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          const allFilled = fields.every(fid => {
+            const val = document.getElementById(fid).value;
+            return val && !isNaN(parseInt(val));
+          });
+          if (allFilled) solve24();
+        }
+      });
+    });
     document.getElementById("n4").addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         solve24();
