@@ -126,6 +126,7 @@
   <script>
     // Réinitialise les champs à l'ouverture
     window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('n1').focus();
       ['n1', 'n2', 'n3', 'n4'].forEach(id => {
         document.getElementById(id).value = '';
       });
