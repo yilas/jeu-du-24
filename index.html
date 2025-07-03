@@ -1,64 +1,30 @@
-</div>
-<button onclick="randomNumbers()">🎲 Chiffres aléatoires</button>
-<button onclick="solve24()">Trouver une solution</button>
-<div id="result"></div>
+<!DOCTYPE html>
+<html lang="fr">
 
-<<<<<<< HEAD
-<script>
-  function solve24() {
-    const ops = [
-      { sym: '+', fn: (a, b) => a + b },
-      { sym: '-', fn: (a, b) => a - b },
-      { sym: '*', fn: (a, b) => a * b },
-      { sym: '/', fn: (a, b) => b !== 0 ? a / b : NaN },
-    ];
-
-    const nums = [
-      parseInt(document.getElementById("n1").value),
-      parseInt(document.getElementById("n2").value),
-      parseInt(document.getElementById("n3").value),
-      parseInt(document.getElementById("n4").value),
-    ];
-
-    if (nums.some(n => isNaN(n) || n < 1 || n > 10)) {
-      document.getElementById("result").innerText = "❌ Veuillez entrer 4 nombres valides entre 1 et 10.";
-      return;
-    }
-
-    const permutations = arr => arr.length === 1 ? [arr] :
-      arr.flatMap((v, i) => permutations([...arr.slice(0, i), ...arr.slice(i + 1)]).map(p => [v, ...p]));
-
-    const tryExpressions = (a, b, c, d) => {
-      for (let op1 of ops) for (let op2 of ops) for (let op3 of ops) {
-        const exprs = [
-          { val: op3.fn(op2.fn(op1.fn(a, b), c), d), str: `(((${a} ${op1.sym} ${b}) ${op2.sym} ${c}) ${op3.sym} ${d})` },
-          { val: op3.fn(op1.fn(a, op2.fn(b, c)), d), str: `((${a} ${op1.sym} (${b} ${op2.sym} ${c})) ${op3.sym} ${d})` },
-          { val: op1.fn(a, op3.fn(op2.fn(b, c), d)), str: `${a} ${op1.sym} (((${b} ${op2.sym} ${c}) ${op3.sym} ${d}))` },
-          { val: op1.fn(a, op2.fn(b, op3.fn(c, d))), str: `${a} ${op1.sym} (${b} ${op2.sym} (${c} ${op3.sym} ${d}))` },
-          { val: op2.fn(op1.fn(a, b), op3.fn(c, d)), str: `(${a} ${op1.sym} ${b}) ${op2.sym} (${c} ${op3.sym} ${d})` }
-        ];
-        for (let e of exprs) {
-          if (Math.abs(e.val - 24) < 1e-6) return e.str;
-        }
-      }
-      return null;
-    };
-
-    for (let perm of permutations(nums)) {
-      const sol = tryExpressions(...perm);
-      if (sol) {
-        document.getElementById("result").innerText = `✅ Solution trouvée :\n${sol}`;
-=======
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jeu du 24</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2739/2739876.png" type="image/png">
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 5vw;
       background: #f7f7f7;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
@@ -137,20 +103,37 @@
 
       if (nums.some(n => isNaN(n) || n < 1 || n > 10)) {
         document.getElementById("result").innerText = "❌ Veuillez entrer 4 nombres valides entre 1 et 10.";
->>>>>>> parent of 390820b (Update file...)
         return;
       }
-    }
 
-    document.getElementById("result").innerText = "❌ Aucune solution ne donne 24 avec ces chiffres.";
-  }
-  function randomNumbers() {
-    for (let i = 1; i <= 4; i++) {
-      document.getElementById("n" + i).value = Math.floor(Math.random() * 10) + 1;
+      const permutations = arr => arr.length === 1 ? [arr] :
+        arr.flatMap((v, i) => permutations([...arr.slice(0, i), ...arr.slice(i + 1)]).map(p => [v, ...p]));
+
+      const tryExpressions = (a, b, c, d) => {
+        for (let op1 of ops) for (let op2 of ops) for (let op3 of ops) {
+          const exprs = [
+            { val: op3.fn(op2.fn(op1.fn(a, b), c), d), str: `(((${a} ${op1.sym} ${b}) ${op2.sym} ${c}) ${op3.sym} ${d})` },
+            { val: op3.fn(op1.fn(a, op2.fn(b, c)), d), str: `((${a} ${op1.sym} (${b} ${op2.sym} ${c})) ${op3.sym} ${d})` },
+            { val: op1.fn(a, op3.fn(op2.fn(b, c), d)), str: `${a} ${op1.sym} (((${b} ${op2.sym} ${c}) ${op3.sym} ${d}))` },
+            { val: op1.fn(a, op2.fn(b, op3.fn(c, d))), str: `${a} ${op1.sym} (${b} ${op2.sym} (${c} ${op3.sym} ${d}))` },
+            { val: op2.fn(op1.fn(a, b), op3.fn(c, d)), str: `(${a} ${op1.sym} ${b}) ${op2.sym} (${c} ${op3.sym} ${d})` }
+          ];
+          for (let e of exprs) {
+            if (Math.abs(e.val - 24) < 1e-6) return e.str;
+          }
+        }
+        return null;
+      };
+
+      for (let perm of permutations(nums)) {
+        const sol = tryExpressions(...perm);
+        if (sol) {
+          document.getElementById("result").innerText = `✅ Solution trouvée :\n${sol}`;
+          return;
+        }
+      }
+
+      document.getElementById("result").innerText = "❌ Aucune solution ne donne 24 avec ces chiffres.";
     }
-    document.getElementById("result").innerText = "";
-  }
-</script>
+  </script>
 </body>
-
-</html>
