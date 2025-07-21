@@ -18,8 +18,6 @@ Pour les chiffres `4, 1, 8, 7`, une solution est :
 - Clavier numérique sur mobile
 - Animation visuelle en cas de succès ou d'échec
 - Bouton de réinitialisation
-- Mode sombre / clair automatique selon les préférences système
-- Sélecteur de thème manuel (dark / light)
 - Favicon personnalisé
 - Animation d’intro
 - **Déploiement facile via GitHub Pages**
@@ -87,8 +85,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ---
 
-© 2025 – Yann Ilas
+🧙‍♂️ Si vous clonez ce dépôt et que vous l'aimez, n'hésitez pas à me mentionner... Ça me fera briller les yeux comme si j'avais trouvé une solution au jeu du 24 en moins de 3 secondes.
 
 ---
 
-🧙‍♂️ Si vous clonez ce dépôt et que vous l'aimez, n'hésitez pas à me mentionner... Ça me fera briller les yeux comme si j'avais trouvé une solution au jeu du 24 en moins de 3 secondes.
+© 2025 – Yann Ilas
