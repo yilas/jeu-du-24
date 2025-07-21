@@ -41,7 +41,7 @@ Ouvrez `index.html` dans un navigateur.
 
 ## 🧱 Structure du projet
 
-```
+```text
 jeu-du-24/
 ├── index.html        # Page principale du jeu
 ├── style.css         # Styles et animations
