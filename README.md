@@ -91,4 +91,4 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ---
 
-🧙‍♂️ Si vous clonez ce dépôt et que vous l'aimez, n'hésitez pas à me mentionner – ça me fera briller les yeux comme si j'avais trouvé une solution au jeu du 24 en moins de 3 secondes.
+🧙‍♂️ Si vous clonez ce dépôt et que vous l'aimez, n'hésitez pas à me mentionner... Ça me fera briller les yeux comme si j'avais trouvé une solution au jeu du 24 en moins de 3 secondes.
