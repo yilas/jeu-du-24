@@ -7,11 +7,34 @@
   <title>Jeu du 24</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2739/2739876.png" type="image/png">
   <style>
+    :root {
+      --bg-color: #f7f7f7;
+      --text-color: #000;
+      --input-bg: #fff;
+      --input-border: #ccc;
+      --button-bg: #3498db;
+      --button-hover-bg: #2980b9;
+      --result-success: #d4edda;
+      --result-error: #f8d7da;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --input-bg: #1e1e1e;
+      --input-border: #444;
+      --button-bg: #3b82f6;
+      --button-hover-bg: #2563eb;
+      --result-success: #2e7d32;
+      --result-error: #c62828;
+    }
+
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 5vw;
-      background: #f7f7f7;
+      background: var(--bg-color);
+      color: var(--text-color);
       animation: fadeIn 1s ease-in;
     }
 
@@ -49,12 +72,16 @@
       width: 15vw;
       font-size: 5vw;
       text-align: center;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: var(--text-color);
+      border-radius: 1vw;
     }
 
     button {
       padding: 2vw 5vw;
       font-size: 5vw;
-      background-color: #3498db;
+      background-color: var(--button-bg);
       color: white;
       border: none;
       border-radius: 1vw;
@@ -62,7 +89,7 @@
     }
 
     button:hover {
-      background-color: #2980b9;
+      background-color: var(--button-hover-bg);
     }
 
     #result {
@@ -73,12 +100,12 @@
 
     @keyframes flash {
       0% {
-        background-color: #d4edda;
+        background-color: var(--result-success);
         transform: scale(1.05);
       }
 
       50% {
-        background-color: #c3e6cb;
+        background-color: var(--result-success);
         transform: scale(1);
       }
 
@@ -122,6 +149,7 @@
   </div>
   <button onclick="solve24()">Trouver une solution</button>
   <button onclick="resetForm()" style="margin-top: 2vw; background-color: #e74c3c;">Réinitialiser</button>
+  <button onclick="toggleTheme()" style="margin-top: 2vw; background-color: #888;">🌓 Thème</button>
   <div id="result"></div>
 
   <script>
@@ -152,6 +180,11 @@
       });
       document.getElementById('result').innerText = '';
     });
+
+    function toggleTheme() {
+      const body = document.body;
+      body.dataset.theme = body.dataset.theme === "dark" ? "light" : "dark";
+    }
 
     function solve24() {
       const ops = [
@@ -205,6 +238,7 @@
         document.getElementById("result").style.animation = "";
       }, 500);
     }
+
     function resetForm() {
       fields.forEach(id => {
         const el = document.getElementById(id);
