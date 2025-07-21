@@ -52,7 +52,7 @@ jeu-du-24/
 
 ## 🖼️ Aperçu
 
-![Aperçu du jeu](Apercu_jeu_du_24.png)
+![Aperçu du jeu](img/Apercu_jeu_du_24.png)
 
 ## 📄 Licence
 
