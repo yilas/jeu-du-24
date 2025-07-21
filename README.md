@@ -8,7 +8,7 @@ Vous devez **trouver une expression mathématique qui donne 24** en utilisant le
 Les opérations autorisées sont : `+`, `-`, `×`, et `÷`.
 
 Exemple :
-Pour les chiffres `4, 1, 8, 7` une solution est :
+Pour les chiffres `4, 1, 8, 7`, une solution est :
 `((7 - 1) × (8 - 4)) = 24`
 
 ## 🚀 Fonctionnalités
@@ -18,7 +18,7 @@ Pour les chiffres `4, 1, 8, 7` une solution est :
 - Clavier numérique sur mobile
 - Animation visuelle en cas de succès ou d'échec
 - Bouton de réinitialisation
-- Mode sombre / clair automatique
+- Mode sombre / clair automatique selon les préférences système
 - Sélecteur de thème manuel (dark / light)
 - Favicon personnalisé
 - Animation d’intro
@@ -33,16 +33,17 @@ git clone https://github.com/yilas/jeu-du-24.git
 cd jeu-du-24
 ```
 
-Ouvrez index.html dans un navigateur.
+Ouvrez `index.html` dans un navigateur.
 
 ## 🌐 Déploiement sur GitHub Pages
 
-1. Activez GitHub Pages dans les paramètres du dépôt (branche main, dossier racine).
-1. Accédez à votre site à l’adresse : `https://<votre-utilisateur>.github.io/jeu-du-24/`
+1. Activez GitHub Pages dans les paramètres du dépôt (branche `main`, dossier racine).
+2. Accédez à votre site à l’adresse :
+   `https://votre-utilisateur.github.io/jeu-du-24/`
 
 ## 🧱 Structure du projet
 
-```bash
+```
 jeu-du-24/
 ├── index.html        # Page principale du jeu
 ├── style.css         # Styles et animations
@@ -50,5 +51,40 @@ jeu-du-24/
 ├── favicon.png       # Icône du site
 └── README.md         # Documentation
 ```
+
+## 🖼️ Aperçu
+
+![Aperçu du jeu](Apercu_jeu_du_24.png)
+
+## 📄 Licence
+
+Distribué sous la licence BSD 2-Clause "Simplified".
+
+```text
+Copyright (c) 2025, Yann Ilas
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS”
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+---
 
 © 2025 – Yann Ilas
