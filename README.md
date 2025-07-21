@@ -1,6 +1,6 @@
 # 🎯 Jeu du 24
 
-Ce projet est une petite webapp interactive développée en HTML, CSS et JavaScript, permettant de jouer au célèbre **jeu du 24**.
+Ce projet est une petite webapp interactive développée en HTML, CSS et JavaScript, permettant de jouer au célèbre **jeu du 24**. [Lien pour y jouer](https://yilas.github.io/jeu-du-24/) directement...
 
 ## 🕹️ Règle du jeu
 
